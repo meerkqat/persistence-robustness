@@ -85,15 +85,20 @@ bool Persistence::set_in_file(QString infile)
 
 bool Persistence::calculate()
 {
-    points_.clear();
+    eps_ = datasetDistance()/100.0;
 
-    QVector<QVector3D> persistence = calc_rips_();
+    // calc the homology on the original dataset and on 100 shaken datasets
+    for (int j = 0; j < 101; j++) {
+        distance_ = datasetDistance();
 
-    double max_dist = datasetDistance();
+        QVector<QVector3D> persistence = calc_rips_();
 
-    for (int i = 0; i < 11; i++) {
-        qDebug() << "Distance " << (max_dist/10.0)*i;
-        qDebug() << calcHomology(persistence, (max_dist/10.0)*i);
+        for (int i = 0; i < 11; i++) {
+            qDebug() << "Distance " << (distance_/10.0)*i;
+            qDebug() << calcHomology(persistence, (distance_/10.0)*i);
+        }
+
+        shakeDataset();
     }
 
     return true;
@@ -103,6 +108,14 @@ double Persistence::datasetDistance()
 {
     // TODO return max distance between 2 points in dataset
     return 1.0;
+}
+
+bool Persistence::shakeDataset()
+{
+    srand(rand_seed_);
+
+    // TODO move every point for +-eps_
+    return true;
 }
 
 QVector<QVector3D> Persistence::calc_rips_()
@@ -131,7 +144,7 @@ QVector<QVector3D> Persistence::calc_rips_()
     max_distance = distance_;
 
     // Generate n-skeleton of the Rips complex
-    rips.generate(skeleton, max_distance, make_push_back_functor(f));
+    rips.generate(skeleton_, max_distance, make_push_back_functor(f));
     std::cout << "# Generated complex of size: " << f.size() << std::endl;
 
     // Generate filtration with respect to distance and compute its persistence
@@ -153,18 +166,17 @@ QVector<QVector3D> Persistence::calc_rips_()
             const Smplx& b = m[birth];
             const Smplx& d = m[cur];
 
-            if (b.dimension() >= skeleton) continue;
+            if (b.dimension() >= skeleton_) continue;
             persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), static_cast<float>(size(d))});
         }
         // positive could be unpaired
         else if (cur->unpaired()) {
             const Smplx& b = m[cur];
-            if (b.dimension() >= skeleton) continue;
+            if (b.dimension() >= skeleton_) continue;
             persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), std::numeric_limits<float>::max()});
         }
     }
 
-    qDebug() << points_.size() << "points";
     qDebug() << "Vietoris-Rips finished!";
 
     return persistence;
@@ -172,7 +184,7 @@ QVector<QVector3D> Persistence::calc_rips_()
 
 QVector<double> Persistence::calcHomology(QVector<QVector3D> persistence, double dist)
 {
-    QVector<double> homo_count(skeleton,0);
+    QVector<double> homo_count(skeleton_,0);
     Q_FOREACH (auto h, persistence) homo_count[h[0]] += h[1] <= dist && dist <= h[2] ? 1 : 0;
 
     return homo_count;
