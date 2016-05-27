@@ -3,7 +3,6 @@
 
 #include <array>
 #include <qstring.h>
-#include <time.h>
 
 #include <topology/simplex.h>
 #include <topology/filtration.h>
@@ -32,15 +31,21 @@ public:
 private:
     QVector<QVector3D> calc_rips_();
     QVector<double> calcHomology(QVector<QVector3D> persistence, double dist);
-    double datasetDistance();
     bool shakeDataset();
 
     double distance_;
+    PointList orig_pts_;
     PointList pts_;
     Dimension skeleton_ = 3;
-    double eps_;
-    //int rand_seed_ = time(NULL);
+    // "true" random if set to 0 (i.e. takes time as seed)
     int rand_seed_ = 42;
+    // how much the points should be "shaken" i.e. eps = max_distance*eps_factor
+    double eps_ = -1;
+    double eps_factor_ = 0.01;
+    // do the calculation on the original dataset and this many shaken datasets
+    int num_shaken_datasets_ = 1;//100;
+    // how many slices should [0,R] be divided into (delta param)
+    int num_slices_ = 11;
 };
 
 #endif // PERSISTENCE_H

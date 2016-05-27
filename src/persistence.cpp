@@ -19,12 +19,17 @@
 #include <qdebug.h>
 #include <qtextstream.h>
 #include <qfile.h>
+#include <time.h>
+#include <math.h>
+#include <stdlib.h>
 
 #include <sstream>
 #include <iostream>
 #include <fstream>
 
 #include "persistence.h"
+
+# define RAND_FLOAT (static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
 
 typedef         PairwiseDistances<PointContainer, L2Distance>           PairDistances;
 typedef         PairDistances::DistanceType                             DistanceType;
@@ -38,7 +43,7 @@ typedef         PersistenceDiagram<>                                    PDgm;
 
 bool Persistence::set_in_file(QString infile)
 {
-    pts_.clear();
+    orig_pts_.clear();
     QFile file(infile);
 
     if(!file.open(QIODevice::ReadOnly))
@@ -65,18 +70,18 @@ bool Persistence::set_in_file(QString infile)
         x_s += x; y_s += y; z_s += z;
 
         TPoint pt = {x, y, z};
-        pts_.push_back(pt);
+        orig_pts_.push_back(pt);
     }
 
-    x_s /= pts_.size();
-    y_s /= pts_.size();
-    z_s /= pts_.size();
+    x_s /= orig_pts_.size();
+    y_s /= orig_pts_.size();
+    z_s /= orig_pts_.size();
 
     for(uint i = 0; i < pts_.size(); i++)
     {
-        pts_[i][0] -= x_s;
-        pts_[i][1] -= y_s;
-        pts_[i][2] -= z_s;
+        orig_pts_[i][0] -= x_s;
+        orig_pts_[i][1] -= y_s;
+        orig_pts_[i][2] -= z_s;
     }
 
     qDebug("Good file :)");
@@ -85,17 +90,17 @@ bool Persistence::set_in_file(QString infile)
 
 bool Persistence::calculate()
 {
-    eps_ = datasetDistance()/100.0;
+    pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size()));
 
-    // calc the homology on the original dataset and on 100 shaken datasets
-    for (int j = 0; j < 101; j++) {
-        distance_ = datasetDistance();
+    // calc the homology on the original dataset and n shaken datasets
+    eps_ = -1;
+    for (int j = 0; j <= num_shaken_datasets_; j++) {
 
         QVector<QVector3D> persistence = calc_rips_();
 
-        for (int i = 0; i < 11; i++) {
-            qDebug() << "Distance " << (distance_/10.0)*i;
-            qDebug() << calcHomology(persistence, (distance_/10.0)*i);
+        for (int i = 0; i < num_slices_; i++) {
+            qDebug() << "Distance " << (distance_/(num_slices_-1.0))*i;
+            qDebug() << calcHomology(persistence, (distance_/(num_slices_-1.0))*i);
         }
 
         shakeDataset();
@@ -104,24 +109,32 @@ bool Persistence::calculate()
     return true;
 }
 
-double Persistence::datasetDistance()
-{
-    // TODO return max distance between 2 points in dataset
-    return 1.0;
-}
-
+// move every point for +-eps_
 bool Persistence::shakeDataset()
 {
-    srand(rand_seed_);
+    srand(rand_seed_ == 0 ? time(NULL) : rand_seed_);
 
-    // TODO move every point for +-eps_
+    for (uint i = 0; i < pts_.size(); i++) {
+        // 2 * pi * [0.0,1.0]
+        double phi = 4.0 * acos(0.0) * RAND_FLOAT;
+        double theta = 4.0 * acos(0.0) * RAND_FLOAT;
+        double r = eps_ * RAND_FLOAT;
+
+        double x = r*sin(phi)*cos(theta);
+        double y = r*sin(phi)*sin(theta);
+        double z = r*cos(phi);
+
+        pts_[i][0] = orig_pts_[i][0]+x;
+        pts_[i][1] = orig_pts_[i][1]+y;
+        pts_[i][2] = orig_pts_[i][2]+z;
+
+    }
+
     return true;
 }
 
 QVector<QVector3D> Persistence::calc_rips_()
 {
-    DistanceType max_distance;
-
     PointContainer points;
 
     for(auto iter = pts_.begin(); iter != pts_.end(); iter++)
@@ -141,10 +154,18 @@ QVector<QVector3D> Persistence::calc_rips_()
     Generator::Evaluator size(distances);
     Fltr f;
 
-    max_distance = distance_;
+    // TODO set max distance in dataset
+    // this seems to be mostly correct, but is int instead of double?
+    //distance_ = rips.max_distance();
+    distance_ = 3.0;
+
+    // first time through (original dataset) eps should be set
+    if (eps_ == -1) {
+        eps_ = distance_*eps_factor_;
+    }
 
     // Generate n-skeleton of the Rips complex
-    rips.generate(skeleton_, max_distance, make_push_back_functor(f));
+    rips.generate(skeleton_, distance_, make_push_back_functor(f));
     std::cout << "# Generated complex of size: " << f.size() << std::endl;
 
     // Generate filtration with respect to distance and compute its persistence
