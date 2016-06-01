@@ -61,7 +61,7 @@ bool Persistence::set_in_file(QString infile)
         if(line[0] == '#' || line.size() < 5)
             continue;
 
-        QStringList  fields = line.right(line.length() - 2).split(QRegExp(",? "));
+        QStringList  fields = line.split(" ");
 
         double x = fields[0].toDouble();
         double y = fields[1].toDouble();
@@ -133,6 +133,23 @@ bool Persistence::shakeDataset()
     return true;
 }
 
+double dummy_get_distance(const PointContainer& points)
+{
+    double max_dist = 0;
+    double dist;
+    for(uint i = 0; i < points.size(); i++)
+        for(uint j = i + 1; j < points.size(); j++)
+        {
+            dist = (points[i][0] - points[j][0]) * (points[i][0] - points[j][0]) +
+                   (points[i][1] - points[j][1]) * (points[i][1] - points[j][1]) +
+                   (points[i][2] - points[j][2]) * (points[i][2] - points[j][2]);
+
+            if(dist > max_dist)
+                max_dist = dist;
+        }
+    return sqrt(max_dist);
+}
+
 QVector<QVector3D> Persistence::calc_rips_()
 {
     PointContainer points;
@@ -154,10 +171,9 @@ QVector<QVector3D> Persistence::calc_rips_()
     Generator::Evaluator size(distances);
     Fltr f;
 
-    // TODO set max distance in dataset
-    // this seems to be mostly correct, but is int instead of double?
-    //distance_ = rips.max_distance();
-    distance_ = 3.0;
+    // Grabs max_distance from rips. Is correct (can check with dummy_max_distance
+    distance_ = rips.max_distance();
+    // distance_ = 2; // better run this in debug mode
 
     // first time through (original dataset) eps should be set
     if (eps_ == -1) {
@@ -165,6 +181,7 @@ QVector<QVector3D> Persistence::calc_rips_()
     }
 
     // Generate n-skeleton of the Rips complex
+    std::cout << "# Generating complex..." << std::endl;
     rips.generate(skeleton_, distance_, make_push_back_functor(f));
     std::cout << "# Generated complex of size: " << f.size() << std::endl;
 
