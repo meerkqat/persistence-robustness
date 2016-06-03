@@ -152,6 +152,10 @@ double dummy_get_distance(const PointContainer& points)
 
 QVector<QVector3D> Persistence::calc_rips_()
 {
+    // taking forever...
+    double prob_ = 0.005;
+    pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size() * prob_));
+
     PointContainer points;
 
     for(auto iter = pts_.begin(); iter != pts_.end(); iter++)
@@ -191,9 +195,9 @@ QVector<QVector3D> Persistence::calc_rips_()
     DynamicPersistence p(f);
     p.pair_simplices();
 
-    // Output cycles
     DynamicPersistence::SimplexMap<Fltr> m = p.make_simplex_map(f);
 
+    // Output cycles
     QVector<QVector3D> persistence;
     for (DynamicPersistence::iterator cur = p.begin(); cur != p.end(); ++cur) {
         // only negative simplices have non-empty cycles
@@ -213,6 +217,21 @@ QVector<QVector3D> Persistence::calc_rips_()
             if (b.dimension() >= skeleton_) continue;
             persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), std::numeric_limits<float>::max()});
         }
+    }
+
+    QString filename = "persistence_diagram_data.txt";
+    QFile diagram_out(filename);
+
+    if (diagram_out.open(QFile::ReadWrite | QFile::Text))
+    {
+        QTextStream out(&diagram_out);
+
+        Q_FOREACH (auto line, persistence)
+        {
+            out << line.x() << " " << line.y() << " " << line.z() << "\n";
+        }
+
+        diagram_out.close();
     }
 
     qDebug() << "Vietoris-Rips finished!";
