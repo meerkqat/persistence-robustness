@@ -19,7 +19,7 @@ typedef std::vector<TPoint> PointList;
 class Persistence
 {
 public:
-    Persistence(): distance_(1) {}
+    Persistence() {}
 
     bool set_in_file(QString pts);
     void set_distance(double distance)            { distance_ = distance; }
@@ -33,7 +33,9 @@ private:
     QVector<double> calcHomology(QVector<QVector3D> persistence, double dist);
     bool shakeDataset();
 
-    double distance_;
+    QString in_file;
+    bool max_distance = false;
+    double distance_ = 3;
     PointList orig_pts_;
     PointList pts_;
     Dimension skeleton_ = 3;

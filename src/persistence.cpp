@@ -85,13 +85,14 @@ bool Persistence::set_in_file(QString infile)
         orig_pts_[i][2] -= z_s;
     }
 
+    in_file = infile;
     qDebug("Good file :)");
     return true;
 }
 
 bool Persistence::calculate()
 {
-    double prob_ = 0.1;
+    double prob_ = 1;
     pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size() * prob_));
 
     srand(rand_seed_ == 0 ? time(NULL) : rand_seed_);
@@ -100,13 +101,19 @@ bool Persistence::calculate()
     eps_ = -1;
     for (int j = 0; j <= num_shaken_datasets_; j++) {
 
-        QString fname = QString("diagram_data2_")+QString::number(prob_)+QString("_")+QString::number(j)+QString(".txt");
-        QVector<QVector3D> persistence = calc_rips_(fname);
+        QString fname = "diagram_" + in_file +
+                "_n" + QString::number(distance_) +
+                "_m" + (max_distance ? "1" : "0") +
+                "_p" + QString::number(prob_) +
+                "_i" + QString::number(j) + ".txt";
 
-        for (int i = 0; i < num_slices_; i++) {
-            qDebug() << "Distance " << (distance_/(num_slices_-1.0))*i;
-            qDebug() << calcHomology(persistence, (distance_/(num_slices_-1.0))*i);
-        }
+        QVector<QVector3D> persistence = calc_rips_(fname);
+        qDebug() << "Wrote to file: " << fname << "\n";
+
+//        for (int i = 0; i < num_slices_; i++) {
+//            qDebug() << "Distance " << (distance_/(num_slices_-1.0))*i;
+//            qDebug() << calcHomology(persistence, (distance_/(num_slices_-1.0))*i);
+//        }
 
         shakeDataset();
     }
@@ -175,7 +182,11 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
     Fltr f;
 
     // Grabs max_distance from rips. Is correct (can check with dummy_max_distance
-    distance_ = rips.max_distance();
+    if(max_distance)
+    {
+        distance_ = rips.max_distance();
+    }
+
     qDebug() << "Distance: " << distance_;
     // distance_ = 2; // better run this in debug mode
 
@@ -215,7 +226,7 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
         else if (cur->unpaired()) {
             const Smplx& b = m[cur];
             if (b.dimension() >= skeleton_) continue;
-            persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), std::numeric_limits<float>::max()});
+            persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), static_cast<float>(distance_ + 1)});
         }
     }
 
@@ -231,6 +242,10 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
         }
 
         diagram_out.close();
+    }
+    else
+    {
+        qDebug() << "!! Cannot write to " << filename << " !!\n";
     }
 
     qDebug() << "Vietoris-Rips finished!";
