@@ -22,6 +22,7 @@
 #include <time.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string>
 
 #include <sstream>
 #include <iostream>
@@ -90,13 +91,15 @@ bool Persistence::set_in_file(QString infile)
 
 bool Persistence::calculate()
 {
-    pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size()));
+    double prob_ = 0.1;
+    pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size() * prob_));
 
     // calc the homology on the original dataset and n shaken datasets
     eps_ = -1;
     for (int j = 0; j <= num_shaken_datasets_; j++) {
 
-        QVector<QVector3D> persistence = calc_rips_();
+        QString fname = QString("diagram_data2_")+QString::number(prob_)+QString("_")+QString::number(j)+QString(".txt");
+        QVector<QVector3D> persistence = calc_rips_(fname);
 
         for (int i = 0; i < num_slices_; i++) {
             qDebug() << "Distance " << (distance_/(num_slices_-1.0))*i;
@@ -150,12 +153,8 @@ double dummy_get_distance(const PointContainer& points)
     return sqrt(max_dist);
 }
 
-QVector<QVector3D> Persistence::calc_rips_()
+QVector<QVector3D> Persistence::calc_rips_(QString filename)
 {
-    // taking forever...
-    double prob_ = 0.005;
-    pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size() * prob_));
-
     PointContainer points;
 
     for(auto iter = pts_.begin(); iter != pts_.end(); iter++)
@@ -177,6 +176,7 @@ QVector<QVector3D> Persistence::calc_rips_()
 
     // Grabs max_distance from rips. Is correct (can check with dummy_max_distance
     distance_ = rips.max_distance();
+    qDebug() << "Distance: " << distance_;
     // distance_ = 2; // better run this in debug mode
 
     // first time through (original dataset) eps should be set
@@ -219,7 +219,6 @@ QVector<QVector3D> Persistence::calc_rips_()
         }
     }
 
-    QString filename = "persistence_diagram_data.txt";
     QFile diagram_out(filename);
 
     if (diagram_out.open(QFile::ReadWrite | QFile::Text))
