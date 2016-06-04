@@ -1,0 +1,2065 @@
+Starting /home/jurij/build-persistence-robustness-Desktop_Qt_5_6_0_GCC_64bit-Release/persistence-robustness...
+Good file :)
+# Generating complex...
+Distance:  29.636
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.9636
+QVector(35, 1, 0)
+Distance  5.92719
+QVector(4, 4, 0)
+Distance  8.89079
+QVector(1, 6, 0)
+Distance  11.8544
+QVector(1, 0, 0)
+Distance  14.818
+QVector(1, 0, 0)
+Distance  17.7816
+QVector(1, 0, 0)
+Distance  20.7452
+QVector(1, 0, 0)
+Distance  23.7088
+QVector(1, 0, 0)
+Distance  26.6724
+QVector(1, 0, 0)
+Distance  29.636
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.6113
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.96113
+QVector(34, 1, 0)
+Distance  5.92226
+QVector(4, 4, 0)
+Distance  8.88339
+QVector(1, 6, 0)
+Distance  11.8445
+QVector(1, 0, 0)
+Distance  14.8056
+QVector(1, 0, 0)
+Distance  17.7668
+QVector(1, 0, 0)
+Distance  20.7279
+QVector(1, 0, 0)
+Distance  23.689
+QVector(1, 0, 0)
+Distance  26.6502
+QVector(1, 0, 0)
+Distance  29.6113
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.617
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.9617
+QVector(35, 0, 0)
+Distance  5.9234
+QVector(4, 4, 0)
+Distance  8.8851
+QVector(1, 6, 0)
+Distance  11.8468
+QVector(1, 0, 0)
+Distance  14.8085
+QVector(1, 0, 0)
+Distance  17.7702
+QVector(1, 0, 0)
+Distance  20.7319
+QVector(1, 0, 0)
+Distance  23.6936
+QVector(1, 0, 0)
+Distance  26.6553
+QVector(1, 0, 0)
+Distance  29.617
+QVector(1, 0, 0)
+Distance:  29.7493
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97493
+QVector(35, 1, 0)
+Distance  5.94985
+QVector(4, 4, 0)
+Distance  8.92478
+QVector(1, 6, 0)
+Distance  11.8997
+QVector(1, 0, 0)
+Distance  14.8746
+QVector(1, 0, 0)
+Distance  17.8496
+QVector(1, 0, 0)
+Distance  20.8245
+QVector(1, 0, 0)
+Distance  23.7994
+QVector(1, 0, 0)
+Distance  26.7743
+QVector(1, 0, 0)
+Distance  29.7493
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.5266
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95266
+QVector(36, 0, 0)
+Distance  5.90532
+QVector(4, 4, 0)
+Distance  8.85798
+QVector(1, 7, 0)
+Distance  11.8106
+QVector(1, 0, 0)
+Distance  14.7633
+QVector(1, 0, 0)
+Distance  17.716
+QVector(1, 0, 0)
+Distance  20.6686
+QVector(1, 0, 0)
+Distance  23.6213
+QVector(1, 0, 0)
+Distance  26.5739
+QVector(1, 0, 0)
+Distance  29.5266
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.6539
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.96539
+QVector(35, 1, 0)
+Distance  5.93078
+QVector(4, 4, 0)
+Distance  8.89616
+QVector(1, 8, 0)
+Distance  11.8616
+QVector(1, 0, 0)
+Distance  14.8269
+QVector(1, 0, 0)
+Distance  17.7923
+QVector(1, 0, 0)
+Distance  20.7577
+QVector(1, 0, 0)
+Distance  23.7231
+QVector(1, 0, 0)
+Distance  26.6885
+QVector(1, 0, 0)
+Distance  29.6539
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.8337
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.98337
+QVector(35, 0, 0)
+Distance  5.96673
+QVector(4, 4, 0)
+Distance  8.9501
+QVector(1, 6, 0)
+Distance  11.9335
+QVector(1, 0, 0)
+Distance  14.9168
+QVector(1, 0, 0)
+Distance  17.9002
+QVector(1, 0, 0)
+Distance  20.8836
+QVector(1, 0, 0)
+Distance  23.8669
+QVector(1, 0, 0)
+Distance  26.8503
+QVector(1, 0, 0)
+Distance  29.8337
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.4983
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.94983
+QVector(35, 0, 0)
+Distance  5.89967
+QVector(4, 4, 0)
+Distance  8.8495
+QVector(1, 7, 0)
+Distance  11.7993
+QVector(1, 0, 0)
+Distance  14.7492
+QVector(1, 0, 0)
+Distance  17.699
+QVector(1, 0, 0)
+Distance  20.6488
+QVector(1, 0, 0)
+Distance  23.5987
+QVector(1, 0, 0)
+Distance  26.5485
+QVector(1, 0, 0)
+Distance  29.4983
+QVector(1, 0, 0)
+Distance:  29.5921
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95921
+QVector(34, 1, 0)
+Distance  5.91841
+QVector(4, 4, 0)
+Distance  8.87762
+QVector(1, 5, 0)
+Distance  11.8368
+QVector(1, 0, 0)
+Distance  14.796
+QVector(1, 0, 0)
+Distance  17.7552
+QVector(1, 0, 0)
+Distance  20.7144
+QVector(1, 0, 0)
+Distance  23.6736
+QVector(1, 0, 0)
+Distance  26.6329
+QVector(1, 0, 0)
+Distance  29.5921
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.7084
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97084
+QVector(35, 0, 0)
+Distance  5.94169
+QVector(4, 4, 0)
+Distance  8.91253
+QVector(1, 7, 0)
+Distance  11.8834
+QVector(1, 0, 0)
+Distance  14.8542
+QVector(1, 0, 0)
+Distance  17.8251
+QVector(1, 0, 0)
+Distance  20.7959
+QVector(1, 0, 0)
+Distance  23.7667
+QVector(1, 0, 0)
+Distance  26.7376
+QVector(1, 0, 0)
+Distance  29.7084
+QVector(1, 0, 0)
+Distance:  29.7561
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97561
+QVector(34, 1, 0)
+Distance  5.95122
+QVector(4, 3, 0)
+Distance  8.92683
+QVector(1, 6, 0)
+Distance  11.9024
+QVector(1, 0, 0)
+Distance  14.878
+QVector(1, 0, 0)
+Distance  17.8537
+QVector(1, 0, 0)
+Distance  20.8293
+QVector(1, 0, 0)
+Distance  23.8049
+QVector(1, 0, 0)
+Distance  26.7805
+QVector(1, 0, 0)
+Distance  29.7561
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.8704
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.98704
+QVector(34, 1, 0)
+Distance  5.97408
+QVector(4, 4, 0)
+Distance  8.96111
+QVector(1, 5, 0)
+Distance  11.9482
+QVector(1, 0, 0)
+Distance  14.9352
+QVector(1, 0, 0)
+Distance  17.9222
+QVector(1, 0, 0)
+Distance  20.9093
+QVector(1, 0, 0)
+Distance  23.8963
+QVector(1, 0, 0)
+Distance  26.8833
+QVector(1, 0, 0)
+Distance  29.8704
+QVector(1, 0, 0)
+Distance:  29.5202
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95202
+QVector(36, 2, 0)
+Distance  5.90403
+QVector(4, 4, 0)
+Distance  8.85605
+QVector(1, 8, 0)
+Distance  11.8081
+QVector(1, 0, 0)
+Distance  14.7601
+QVector(1, 0, 0)
+Distance  17.7121
+QVector(1, 0, 0)
+Distance  20.6641
+QVector(1, 0, 0)
+Distance  23.6161
+QVector(1, 0, 0)
+Distance  26.5682
+QVector(1, 0, 0)
+Distance  29.5202
+QVector(1, 0, 0)
+Distance:  29.863
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.9863
+QVector(36, 1, 0)
+Distance  5.9726
+QVector(4, 4, 0)
+Distance  8.95891
+QVector(1, 5, 0)
+Distance  11.9452
+QVector(1, 0, 0)
+Distance  14.9315
+QVector(1, 0, 0)
+Distance  17.9178
+QVector(1, 0, 0)
+Distance  20.9041
+QVector(1, 0, 0)
+Distance  23.8904
+QVector(1, 0, 0)
+Distance  26.8767
+QVector(1, 0, 0)
+Distance  29.863
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.7011
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97011
+QVector(33, 1, 0)
+Distance  5.94023
+QVector(5, 4, 0)
+Distance  8.91034
+QVector(1, 7, 0)
+Distance  11.8805
+QVector(1, 0, 0)
+Distance  14.8506
+QVector(1, 0, 0)
+Distance  17.8207
+QVector(1, 0, 0)
+Distance  20.7908
+QVector(1, 0, 0)
+Distance  23.7609
+QVector(1, 0, 0)
+Distance  26.731
+QVector(1, 0, 0)
+Distance  29.7011
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.4971
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.94971
+QVector(35, 0, 0)
+Distance  5.89943
+QVector(5, 4, 0)
+Distance  8.84914
+QVector(1, 8, 0)
+Distance  11.7989
+QVector(1, 0, 0)
+Distance  14.7486
+QVector(1, 0, 0)
+Distance  17.6983
+QVector(1, 0, 0)
+Distance  20.648
+QVector(1, 0, 0)
+Distance  23.5977
+QVector(1, 0, 0)
+Distance  26.5474
+QVector(1, 0, 0)
+Distance  29.4971
+QVector(1, 0, 0)
+Distance:  29.7445
+# Generating complex...
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97445
+QVector(36, 1, 0)
+Distance  5.9489
+QVector(4, 4, 0)
+Distance  8.92335
+QVector(1, 7, 0)
+Distance  11.8978
+QVector(1, 0, 0)
+Distance  14.8722
+QVector(1, 0, 0)
+Distance  17.8467
+QVector(1, 0, 0)
+Distance  20.8211
+QVector(1, 0, 0)
+Distance  23.7956
+QVector(1, 0, 0)
+Distance  26.77
+QVector(1, 0, 0)
+Distance  29.7445
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.774
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.9774
+QVector(35, 1, 0)
+Distance  5.95479
+QVector(4, 4, 0)
+Distance  8.93219
+QVector(1, 6, 0)
+Distance  11.9096
+QVector(1, 0, 0)
+Distance  14.887
+QVector(1, 0, 0)
+Distance  17.8644
+QVector(1, 0, 0)
+Distance  20.8418
+QVector(1, 0, 0)
+Distance  23.8192
+QVector(1, 0, 0)
+Distance  26.7966
+QVector(1, 0, 0)
+Distance  29.774
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.7538
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97538
+QVector(35, 2, 0)
+Distance  5.95076
+QVector(4, 4, 0)
+Distance  8.92614
+QVector(1, 7, 0)
+Distance  11.9015
+QVector(1, 0, 0)
+Distance  14.8769
+QVector(1, 0, 0)
+Distance  17.8523
+QVector(1, 0, 0)
+Distance  20.8277
+QVector(1, 0, 0)
+Distance  23.803
+QVector(1, 0, 0)
+Distance  26.7784
+QVector(1, 0, 0)
+Distance  29.7538
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.5953
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95953
+QVector(34, 1, 0)
+Distance  5.91906
+QVector(4, 4, 0)
+Distance  8.87859
+QVector(1, 7, 0)
+Distance  11.8381
+QVector(1, 0, 0)
+Distance  14.7976
+QVector(1, 0, 0)
+Distance  17.7572
+QVector(1, 0, 0)
+Distance  20.7167
+QVector(1, 0, 0)
+Distance  23.6762
+QVector(1, 0, 0)
+Distance  26.6358
+QVector(1, 0, 0)
+Distance  29.5953
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.7386
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97386
+QVector(36, 0, 0)
+Distance  5.94771
+QVector(4, 5, 0)
+Distance  8.92157
+QVector(1, 8, 0)
+Distance  11.8954
+QVector(1, 0, 0)
+Distance  14.8693
+QVector(1, 0, 0)
+Distance  17.8431
+QVector(1, 0, 0)
+Distance  20.817
+QVector(1, 0, 0)
+Distance  23.7908
+QVector(1, 0, 0)
+Distance  26.7647
+QVector(1, 0, 0)
+Distance  29.7386
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.5536
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95536
+QVector(36, 0, 0)
+Distance  5.91073
+QVector(4, 4, 0)
+Distance  8.86609
+QVector(1, 7, 0)
+Distance  11.8215
+QVector(1, 0, 0)
+Distance  14.7768
+QVector(1, 0, 0)
+Distance  17.7322
+QVector(1, 0, 0)
+Distance  20.6875
+QVector(1, 0, 0)
+Distance  23.6429
+QVector(1, 0, 0)
+Distance  26.5983
+QVector(1, 0, 0)
+Distance  29.5536
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.653
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.9653
+QVector(35, 0, 0)
+Distance  5.93061
+QVector(4, 4, 0)
+Distance  8.89591
+QVector(1, 7, 0)
+Distance  11.8612
+QVector(1, 0, 0)
+Distance  14.8265
+QVector(1, 0, 0)
+Distance  17.7918
+QVector(1, 0, 0)
+Distance  20.7571
+QVector(1, 0, 0)
+Distance  23.7224
+QVector(1, 0, 0)
+Distance  26.6877
+QVector(1, 0, 0)
+Distance  29.653
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.5761
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.95761
+QVector(35, 0, 0)
+Distance  5.91522
+QVector(4, 4, 0)
+Distance  8.87283
+QVector(1, 7, 0)
+Distance  11.8304
+QVector(1, 0, 0)
+Distance  14.7881
+QVector(1, 0, 0)
+Distance  17.7457
+QVector(1, 0, 0)
+Distance  20.7033
+QVector(1, 0, 0)
+Distance  23.6609
+QVector(1, 0, 0)
+Distance  26.6185
+QVector(1, 0, 0)
+Distance  29.5761
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.7371
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.97371
+QVector(34, 2, 0)
+Distance  5.94743
+QVector(4, 4, 0)
+Distance  8.92114
+QVector(1, 7, 0)
+Distance  11.8949
+QVector(1, 0, 0)
+Distance  14.8686
+QVector(1, 0, 0)
+Distance  17.8423
+QVector(1, 0, 0)
+Distance  20.816
+QVector(1, 0, 0)
+Distance  23.7897
+QVector(1, 0, 0)
+Distance  26.7634
+QVector(1, 0, 0)
+Distance  29.7371
+QVector(1, 0, 0)
+# Generating complex...
+Distance:  29.6598
+# Generated complex of size: 4087975
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+**
+Vietoris-Rips finished!
+Distance  0
+QVector(100, 0, 0)
+Distance  2.96598
+QVector(34, 0, 0)
+Distance  5.93197
+QVector(4, 4, 0)
+Distance  8.89795
+QVector(1, 5, 0)
+Distance  11.8639
+QVector(1, 0, 0)
+Distance  14.8299
+QVector(1, 0, 0)
+Distance  17.7959
+QVector(1, 0, 0)
+Distance  20.7619
+QVector(1, 0, 0)
+Distance  23.7279
+QVector(1, 0, 0)
+Distance  26.6938
+QVector(1, 0, 0)
+Distance  29.6598
+QVector(1, 0, 0)
+/home/jurij/build-persistence-robustness-Desktop_Qt_5_6_0_GCC_64bit-Release/persistence-robustness exited with code 0

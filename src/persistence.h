@@ -43,7 +43,7 @@ private:
     double eps_ = -1;
     double eps_factor_ = 0.01;
     // do the calculation on the original dataset and this many shaken datasets
-    int num_shaken_datasets_ = 20;//100;
+    int num_shaken_datasets_ = 25;//100;
     // how many slices should [0,R] be divided into (delta param)
     int num_slices_ = 11;
 };
