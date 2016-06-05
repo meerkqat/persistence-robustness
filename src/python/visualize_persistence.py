@@ -28,9 +28,9 @@ class Visualiser:
     """
 
     IN_FOLDER = "diagram_dataset/"
-    IN_FILES = re.compile(r"data2_d4_p1_i(\d).txt")
+    IN_FILES = re.compile(r"data2_d7\.5_p1_i(\d).txt")
     OUT_FOLDER = "diagram_imgs/"
-    LINES_NUMBER = 200
+    LINES_NUMBER = 400
     LINES_WIDTH = 0.3
     SORT_LINES = False
 
