@@ -15,6 +15,13 @@ typedef std::array<double, 3> TPoint;
 
 typedef std::vector<TPoint> PointList;
 
+typedef struct {
+    float dim;
+    float birth;
+    float death;
+    QString cycle;
+} PersistenceItem;
+
 // Wrapper...
 class Persistence
 {
@@ -29,25 +36,29 @@ public:
     bool calculate();
 
 private:
-    QVector<QVector3D> calc_rips_(QString filename);
+    void calc_rips_(QString filename);
     QVector<double> calcHomology(QVector<QVector3D> persistence, double dist);
     bool shakeDataset();
 
-    QString in_file;
-    bool max_distance = false;
-    double distance_ = 3;
     PointList orig_pts_;
     PointList pts_;
+    // in_file
+    QString in_file;
+    // max+distance. if 0, then rips.max_distance()
+    double distance_ = 7.5;
+    // max dimension of a generator
     Dimension skeleton_ = 3;
     // "true" random if set to 0 (i.e. takes time as seed)
-    int rand_seed_ = 42;
+    int rand_seed_ = 0;
     // how much the points should be "shaken" i.e. eps = max_distance*eps_factor
     double eps_ = -1;
     double eps_factor_ = 0.01;
     // do the calculation on the original dataset and this many shaken datasets
-    int num_shaken_datasets_ = 20;//100;
+    int num_shaken_datasets_ = 30;//100;
     // how many slices should [0,R] be divided into (delta param)
     int num_slices_ = 11;
+    // cut of lifetime, if shorter
+    float min_lifetime_ = 0.05;
 };
 
 #endif // PERSISTENCE_H

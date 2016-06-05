@@ -2,98 +2,120 @@
 Persistence visualizer. Much visual. Very persistence.
 '''
 
-
 import matplotlib.pyplot as plt
+import re
+import os
+from collections import defaultdict
+import random
 
 
-def max12(arr):
-    m0_i = m1_i = -1
-    m0 = m1 = float('-inf')
-    c = 0
+class PersistenceItem:
+    def __init__(self, betti, c):
+        self.betti = int(betti)
+        self.cycle = c
+        self.bnd = []
 
-    for i, x in enumerate(arr):
-        if x >= m0:
-            m0, m1 = x, m0
-            m0_i, m1_i = i, m0_i
-        elif x > m1:
-            m1 = x
-            m1_i = i
+    def add_variation(self, b, d):
+        self.bnd.append((float(b), float(d)))
 
-        c += 1
-
-    return m0, m0_i, m1, m1_i if c > 1 else None
+    def __repr__(self):
+        return self.cycle + str(self.bnd)
 
 
-def parse(file_name, min_delta, cut_distance=10):
-    data = {0: [], 1: [], 2: []}
+class Visualiser:
+    """
+    parses files, produces visualizations and saves them
+    """
 
-    with open(file_name) as file:
-        for line in file:
-            betti, start, end = line.strip().split(' ')
+    IN_FOLDER = "diagram_dataset/"
+    IN_FILES = re.compile(r"data2_d4_p1_i(\d).txt")
+    OUT_FOLDER = "diagram_imgs/"
+    LINES_NUMBER = 200
+    LINES_WIDTH = 0.3
+    SORT_LINES = False
 
-            if abs(float(end) - float(start)) > min_delta:
-                data[int(betti)] += [(float(start), float(end))]
+    def __init__(self):
+        self.data = {}
+        self._parse()
 
-    '''
-    for k in data:
-        m0, m0_i, m1, m1_i = max12([t[1] for t in data[k]])
-        if abs(m0 - m1) > cut_distance:
-            s, _ = data[k][m0_i]
-            data[k][m0_i] = (s, m1 + cut_distance)
-    '''
+    def _parse(self):
+        ctr = 0
+        for fname in sorted(os.listdir(Visualiser.IN_FOLDER)):
+            if not Visualiser.IN_FILES.match(fname):
+                continue
 
-    data[0][0] = (0, max(max12([d[1] for d in data[0]])[2], max(max([d[1] for d in data[1]]), max([d[1] for d in data[2]]))) + cut_distance)
+            ctr += 1
 
-    return data
+            with open(Visualiser.IN_FOLDER + fname) as file:
+                for line in file:
+                    betti, start, end, cycle = line.strip().split(' ')
 
+                    if cycle not in self.data:
+                        self.data[cycle] = PersistenceItem(betti, cycle)
 
-def visualize(data):
+                    self.data[cycle].add_variation(start, end)
 
-    fig = plt.figure()
-    fig.suptitle('Persistence diagram')
-    hax0 = fig.add_subplot(311)
-    hax1 = fig.add_subplot(312, sharex=hax0)
-    hax2 = fig.add_subplot(313, sharex=hax1)
+    def visualize(self):
+        self._visualize_groups()
+        self._visualize_lines()
 
-    betti = 0
-    limit = len(data[betti])
+    def _visualize_groups(self):
+        plt.title("Persistence diagram 1")
+        plt.hold(True)
 
-    print len(data[0]), len(data[1]), len(data[2])
-    print [t[0] for t in data[betti]][0:limit]
-    print [t[1] for t in data[betti]][0:limit]
+        XY = []
+        for _, v in self.data.items():
+            x, y = [d[0] for d in v.bnd], [d[1] for d in v.bnd]
+            clr = ("g" if v.betti == 0 else "b" if v.betti == 1 else "r") + "-"
+            plt.plot(x, y, clr, linewidth=0.3)
 
-    hax0.hlines(range(limit), [t[0] for t in data[betti]][0:limit], [t[1] for t in data[betti]][0:limit], colors='g', lw=3)
-    #hax0.set_xlabel('Eps')
-    hax0.set_ylabel('H0')
-    hax0.yaxis.set_visible(False)
-    hax0.xaxis.set_visible(False)
+            XY.extend(x)
+            XY.extend(y)
 
-    betti = 1
-    limit = len(data[betti])
-    hax1.hlines(range(limit), [t[0] for t in data[betti]][0:limit], [t[1] for t in data[betti]][0:limit], colors='r', lw=3)
-    hax1.set_ylabel('H1')
-    hax1.yaxis.set_visible(False)
-    hax1.xaxis.set_visible(False)
+        delta = 0.3
+        mx = max(XY)
 
-    betti = 2
-    limit = len(data[betti])
-    hax2.hlines(range(limit), [t[0] for t in data[betti]][0:limit], [t[1] for t in data[betti]][0:limit], colors='b', lw=3)
-    hax2.set_ylabel('H2')
-    hax2.yaxis.set_visible(False)
+        plt.plot([0, mx], [0, mx], 'k')
+        plt.axis((-delta, mx + delta, -delta, mx + delta))
 
-    fig.tight_layout(h_pad=0)
-    #x0, x1, y0, y1 = plt.axis()
-    #plt.axis((x0, x1, y0 + 100, y1)) # ???
-    plt.savefig('persistence_diagram_data1.png')
-    plt.show()
+        fout = ("" + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "groups")
+        plt.savefig(fout)
 
+    def _visualize_lines(self):
+        fig = plt.figure()
+        fig.suptitle('Persistence diagram 2')
+        hax0 = fig.add_subplot(311)
+        hax1 = fig.add_subplot(312, sharex=hax0)
+        hax2 = fig.add_subplot(313, sharex=hax1)
+    
+        haxs = [hax0, hax1, hax2]
+        colors = ['g', 'r', 'b']
 
+        lines = defaultdict(list)
+        for _, line in self.data.items():
+            b = sum([i[0] for i in line.bnd]) / len(line.bnd)
+            d = sum([i[1] for i in line.bnd]) / len(line.bnd)
+            lines[line.betti].append((b, d))
 
-def run():
-    file_name = "persistence_diagram_data.txt"
-    data = parse(file_name, 0.1)
-    visualize(data)
+        for i, line in lines.items():
+            hax = haxs[i]
 
+            if Visualiser.SORT_LINES:
+                line = sorted(line, key=lambda x: x[0] - x[1])
+            else:
+                random.shuffle(line)
 
-# run stuff
-run()
+            line = line[:Visualiser.LINES_NUMBER] if len(line) > Visualiser.LINES_NUMBER else line
+
+            hax.set_ylabel('H' + str(i))
+            hax.hlines(range(len(line)), [i[0] for i in line], [i[1] for i in line], colors=colors[i], lw=Visualiser.LINES_WIDTH)
+            hax.yaxis.set_visible(False)
+            hax.xaxis.set_visible(False)
+
+        fout = ("" + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "lines")
+        plt.savefig(fout)
+
+if __name__ == '__main__':
+    vis = Visualiser()
+    vis.visualize()
+

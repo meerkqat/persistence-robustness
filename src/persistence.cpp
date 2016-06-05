@@ -97,23 +97,16 @@ bool Persistence::calculate()
 
     // calc the homology on the original dataset and n shaken datasets
     eps_ = -1;
-    for (int j = 0; j <= num_shaken_datasets_; j++) {
-
+    for (int j = 0; j <= num_shaken_datasets_; j++)
+    {
+        shakeDataset();
         QString fname = "diagram_" + in_file +
-                "_n" + QString::number(distance_) +
-                "_m" + (max_distance ? "1" : "0") +
+                "_d" + QString::number(distance_) +
                 "_p" + QString::number(prob_) +
                 "_i" + QString::number(j) + ".txt";
 
-        QVector<QVector3D> persistence = calc_rips_(fname);
+        calc_rips_(fname);
         qDebug() << "Wrote to file: " << fname << "\n";
-
-//        for (int i = 0; i < num_slices_; i++) {
-//            qDebug() << "Distance " << (distance_/(num_slices_-1.0))*i;
-//            qDebug() << calcHomology(persistence, (distance_/(num_slices_-1.0))*i);
-//        }
-
-        shakeDataset();
     }
 
     return true;
@@ -160,7 +153,18 @@ double dummy_get_distance(const PointContainer& points)
     return sqrt(max_dist);
 }
 
-QVector<QVector3D> Persistence::calc_rips_(QString filename)
+QString get_cycle(const Smplx& s)
+{
+    QString to_ret;
+    for(auto v = s.vertices().begin(); v != s.vertices().end(); v++)
+    {
+        uint cycle = *v;
+        to_ret += QString::number(cycle) + "-";
+    }
+    return to_ret.left(to_ret.length() - 1);
+}
+
+void Persistence::calc_rips_(QString filename)
 {
     PointContainer points;
 
@@ -182,13 +186,9 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
     Fltr f;
 
     // Grabs max_distance from rips. Is correct (can check with dummy_max_distance
-    if(max_distance)
-    {
+    if(distance_ == 0) {
         distance_ = rips.max_distance();
     }
-
-    qDebug() << "Distance: " << distance_;
-    // distance_ = 2; // better run this in debug mode
 
     // first time through (original dataset) eps should be set
     if (eps_ == -1) {
@@ -209,7 +209,7 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
     DynamicPersistence::SimplexMap<Fltr> m = p.make_simplex_map(f);
 
     // Output cycles
-    QVector<QVector3D> persistence;
+    QVector<PersistenceItem> persistence;
     for (DynamicPersistence::iterator cur = p.begin(); cur != p.end(); ++cur) {
         // only negative simplices have non-empty cycles
         if (!cur->sign()) {
@@ -219,14 +219,19 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
             const Smplx& b = m[birth];
             const Smplx& d = m[cur];
 
-            if (b.dimension() >= skeleton_) continue;
-            persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), static_cast<float>(size(d))});
+            float sz_b = static_cast<float>(size(b));
+            float sz_d = static_cast<float>(size(d));
+
+            if (b.dimension() >= skeleton_ || (sz_d - sz_b) < min_lifetime_) continue;
+
+            persistence.append({static_cast<float>(b.dimension()), sz_b, sz_d, get_cycle(b)});
         }
         // positive could be unpaired
         else if (cur->unpaired()) {
             const Smplx& b = m[cur];
+
             if (b.dimension() >= skeleton_) continue;
-            persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), static_cast<float>(distance_ + 1)});
+            persistence.append({static_cast<float>(b.dimension()), static_cast<float>(size(b)), static_cast<float>(distance_ + 1), get_cycle(b)});
         }
     }
 
@@ -238,7 +243,7 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
 
         Q_FOREACH (auto line, persistence)
         {
-            out << line.x() << " " << line.y() << " " << line.z() << "\n";
+            out << line.dim << " " << line.birth << " " << line.death << " " << line.cycle << "\n";
         }
 
         diagram_out.close();
@@ -249,8 +254,6 @@ QVector<QVector3D> Persistence::calc_rips_(QString filename)
     }
 
     qDebug() << "Vietoris-Rips finished!";
-
-    return persistence;
 }
 
 QVector<double> Persistence::calcHomology(QVector<QVector3D> persistence, double dist)
