@@ -95,6 +95,8 @@ bool Persistence::calculate()
     double prob_ = 1;
     pts_ = PointList(orig_pts_.begin(), orig_pts_.begin() + int(orig_pts_.size() * prob_));
 
+    srand(rand_seed_ == 0 ? time(NULL) : rand_seed_);
+
     // calc the homology on the original dataset and n shaken datasets
     eps_ = -1;
     for (int j = 0; j <= num_shaken_datasets_; j++)
@@ -115,8 +117,6 @@ bool Persistence::calculate()
 // move every point for +-eps_
 bool Persistence::shakeDataset()
 {
-    srand(rand_seed_ == 0 ? time(NULL) : rand_seed_);
-
     for (uint i = 0; i < pts_.size(); i++) {
         // 2 * pi * [0.0,1.0]
         double phi = 4.0 * acos(0.0) * RAND_FLOAT;
