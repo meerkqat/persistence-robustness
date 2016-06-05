@@ -28,10 +28,12 @@ class Visualiser:
     """
 
     IN_FOLDER = "diagram_dataset/"
-    IN_FILES = re.compile(r"data2_d7\.5_p1_i(\d).txt")
+    IN_FILES = re.compile(r"data1_d18_p1_i(\d).txt")
     OUT_FOLDER = "diagram_imgs/"
     LINES_NUMBER = 400
     LINES_WIDTH = 0.3
+    GROUPS_WIDTH = 0.1
+    EXISTS_IN_PERCENTAGE_ITERATIONS = 1
     SORT_LINES = False
 
     def __init__(self):
@@ -54,6 +56,22 @@ class Visualiser:
                         self.data[cycle] = PersistenceItem(betti, cycle)
 
                     self.data[cycle].add_variation(start, end)
+        
+        # remove short lived
+        for k in list(self.data.keys()):
+            if len(self.data[k].bnd) < ctr * Visualiser.EXISTS_IN_PERCENTAGE_ITERATIONS:
+                del self.data[k]
+        
+        # filter to LINES_NUMBER
+        new_keys = list(self.data.keys())
+        random.shuffle(new_keys)
+        
+        new_data = []
+        for i in range(3):
+            new_data.extend([k for k in new_keys if self.data[k].betti == i][:Visualiser.LINES_NUMBER])
+         
+        self.data = {k: self.data[k] for k in new_data}
+        
 
     def visualize(self):
         self._visualize_groups()
@@ -66,8 +84,8 @@ class Visualiser:
         XY = []
         for _, v in self.data.items():
             x, y = [d[0] for d in v.bnd], [d[1] for d in v.bnd]
-            clr = ("g" if v.betti == 0 else "b" if v.betti == 1 else "r") + "-"
-            plt.plot(x, y, clr, linewidth=0.3)
+            clr = self._color(v.betti)
+            plt.plot(x, y, clr, linewidth=Visualiser.GROUPS_WIDTH)
 
             XY.extend(x)
             XY.extend(y)
@@ -80,16 +98,19 @@ class Visualiser:
 
         fout = ("" + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "groups")
         plt.savefig(fout)
+    
+    def _color(self, dim, delta=70):        
+        clr = [random.randint(0, delta), random.randint(0, delta), random.randint(0, delta)]
+        clr[dim] = 0
+        clr[dim] = 255 - sum(clr)
+        
+        return "#{:02x}{:02x}{:02x}".format(*clr)
 
     def _visualize_lines(self):
         fig = plt.figure()
         fig.suptitle('Persistence diagram 2')
         hax0 = fig.add_subplot(311)
-        hax1 = fig.add_subplot(312, sharex=hax0)
-        hax2 = fig.add_subplot(313, sharex=hax1)
-    
-        haxs = [hax0, hax1, hax2]
-        colors = ['g', 'r', 'b']
+        haxs = [hax0, fig.add_subplot(312, sharex=hax0), fig.add_subplot(313, sharex=hax0)]
 
         lines = defaultdict(list)
         for _, line in self.data.items():
@@ -108,7 +129,7 @@ class Visualiser:
             line = line[:Visualiser.LINES_NUMBER] if len(line) > Visualiser.LINES_NUMBER else line
 
             hax.set_ylabel('H' + str(i))
-            hax.hlines(range(len(line)), [i[0] for i in line], [i[1] for i in line], colors=colors[i], lw=Visualiser.LINES_WIDTH)
+            hax.hlines(range(len(line)), [i[0] for i in line], [i[1] for i in line], colors=self._color(i, 0), lw=Visualiser.LINES_WIDTH)
             hax.yaxis.set_visible(False)
             hax.xaxis.set_visible(False)
 
