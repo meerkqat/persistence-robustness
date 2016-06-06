@@ -7,6 +7,7 @@ import re
 import os
 from collections import defaultdict
 import random
+from dionysus import *
 
 
 class PersistenceItem:
@@ -37,6 +38,8 @@ class Visualiser:
     SORT_LINES = False
 
     def __init__(self):
+        self.pdiags = []
+
         self.data = {}
         self._parse()
 
@@ -48,9 +51,13 @@ class Visualiser:
 
             ctr += 1
 
+            self.pdiags.append(PersistenceDiagram(2))
+
             with open(Visualiser.IN_FOLDER + fname) as file:
                 for line in file:
                     betti, start, end, cycle = line.strip().split(' ')
+
+                    self.pdiags[-1].append((float(start), float(end), int(betti)))
 
                     if cycle not in self.data:
                         self.data[cycle] = PersistenceItem(betti, cycle)
