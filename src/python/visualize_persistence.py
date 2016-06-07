@@ -7,7 +7,8 @@ import re
 import os
 from collections import defaultdict
 import random
-from dionysus import *
+import math
+# from dionysus import *
 
 
 class PersistenceItem:
@@ -22,6 +23,15 @@ class PersistenceItem:
     def __repr__(self):
         return self.cycle + str(self.bnd)
 
+    def radius(self):
+        xs = [b[0] for b in self.bnd]
+        ys = [b[1] for b in self.bnd]
+
+        x_c = sum(xs)/len(xs)
+        y_c = sum(ys)/len(ys)
+
+        rs = [math.sqrt((b[0] - x_c) ** 2 + (b[1] - y_c) ** 2) for b in self.bnd]
+        return max(rs)
 
 class Visualiser:
     """
@@ -29,16 +39,18 @@ class Visualiser:
     """
 
     IN_FOLDER = "diagram_dataset/"
-    IN_FILES = re.compile(r"data1_d18_p1_i(\d).txt")
     OUT_FOLDER = "diagram_imgs/"
-    LINES_NUMBER = 400
+    # IN_FILES = re.compile(r"data1_d18_p1_i(\d).txt")
+    IN_FILES = re.compile(r"data2_d7\.5_p1_i(\d).txt")
+    LINES_NUMBER = 1000
     LINES_WIDTH = 0.3
-    GROUPS_WIDTH = 0.1
-    EXISTS_IN_PERCENTAGE_ITERATIONS = 1
+    GROUPS_WIDTH = 0.3
+    GROUP_RADIUS = 0.4
+    EXISTS_IN_PERCENTAGE_ITERATIONS = 0.3
     SORT_LINES = False
 
     def __init__(self):
-        self.pdiags = []
+        # self.pdiags = []
 
         self.data = {}
         self._parse()
@@ -51,13 +63,13 @@ class Visualiser:
 
             ctr += 1
 
-            self.pdiags.append(PersistenceDiagram(2))
+            # self.pdiags.append(PersistenceDiagram(2))
 
             with open(Visualiser.IN_FOLDER + fname) as file:
                 for line in file:
                     betti, start, end, cycle = line.strip().split(' ')
 
-                    self.pdiags[-1].append((float(start), float(end), int(betti)))
+                    # self.pdiags[-1].append((float(start), float(end), int(betti)))
 
                     if cycle not in self.data:
                         self.data[cycle] = PersistenceItem(betti, cycle)
@@ -68,15 +80,19 @@ class Visualiser:
         for k in list(self.data.keys()):
             if len(self.data[k].bnd) < ctr * Visualiser.EXISTS_IN_PERCENTAGE_ITERATIONS:
                 del self.data[k]
-        
+
+        # filter to max_radius
+        self.data = {c: v for c, v in self.data.items() if v.radius() < Visualiser.GROUP_RADIUS}
+
+
         # filter to LINES_NUMBER
         new_keys = list(self.data.keys())
         random.shuffle(new_keys)
-        
         new_data = []
         for i in range(3):
             new_data.extend([k for k in new_keys if self.data[k].betti == i][:Visualiser.LINES_NUMBER])
-         
+
+
         self.data = {k: self.data[k] for k in new_data}
         
 
@@ -103,7 +119,7 @@ class Visualiser:
         plt.plot([0, mx], [0, mx], 'k')
         plt.axis((-delta, mx + delta, -delta, mx + delta))
 
-        fout = ("" + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "groups")
+        fout = ("r{}_n{}_".format(Visualiser.GROUP_RADIUS, Visualiser.LINES_NUMBER) + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "groups")
         plt.savefig(fout)
     
     def _color(self, dim, delta=70):        
@@ -135,12 +151,14 @@ class Visualiser:
 
             line = line[:Visualiser.LINES_NUMBER] if len(line) > Visualiser.LINES_NUMBER else line
 
+            print(len(line),i)
             hax.set_ylabel('H' + str(i))
-            hax.hlines(range(len(line)), [i[0] for i in line], [i[1] for i in line], colors=self._color(i, 0), lw=Visualiser.LINES_WIDTH)
+            draw = [(0, 0)] + line + [(0, 0)]
+            hax.hlines(range(len(draw)), [i[0] for i in draw], [i[1] for i in draw], colors=self._color(i, 0), lw=Visualiser.LINES_WIDTH)
             hax.yaxis.set_visible(False)
             hax.xaxis.set_visible(False)
 
-        fout = ("" + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "lines")
+        fout = ("r{}_n{}_".format(Visualiser.GROUP_RADIUS, Visualiser.LINES_NUMBER) + Visualiser.IN_FILES.pattern).replace(".txt", ".svg").replace("_i(\\d)", "lines")
         plt.savefig(fout)
 
 if __name__ == '__main__':
