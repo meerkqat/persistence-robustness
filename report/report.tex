@@ -25,20 +25,20 @@
 The goal of this project was to demonstrate the robustness of persistence diagrams of the Vietoris-Rips complex on a specific example.
 
 \subsection{Vietoris-Rips}
-Vietoris-Rips complex is very similar to Cech complex, but here we don't operate with virtual spheres. The distances between pairs of points are used instead. In Vietoris-Rips complex a simplex is part of the complex only if the diameter of the simplex is smaller or equal to $2\delta$ (maximal distance between two points). The difference from the Cech complex is easily observed if we consider vertexes from the equilateral triangle, while taking about half of the length of one side as can be seen in the Image~\ref{fig:vrdiag}. Cech complex would return an empty triangle, while Vietoris-Rips generates a full 2-simplex.\cite{Zomorodian2010263}
+Vietoris-Rips complex is very similar to Čech complex, but here we don't operate with virtual spheres. The distances between pairs of points are used instead. In Vietoris-Rips complex a simplex is part of the complex only if the diameter of the simplex is smaller or equal to $2\delta$ (maximal distance between two points). The difference from the Čech complex is easily observed if we consider vertexes from the equilateral triangle, while taking about half of the length of one side as can be seen in the Image~\ref{fig:vrdiag}. Čech complex would return an empty triangle, while Vietoris-Rips generates a full 2-simplex.\cite{Zomorodian2010263}
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.4\textwidth]{vrdiag.png}
-    \caption{The Vietoris-Rips complex generates a full triangle, while the Cech complex an empty one.}
+    \caption{The Vietoris-Rips complex generates a full triangle, whereas the Čech complex an empty one.}
     \label{fig:vrdiag}
 \end{figure}
 
-The Vietoris-Rips complex can be seen as a Cech complex in which the added complexes have all the faces included in Cech complex. It follows that the Cech complex is a subset of Vietoris-Rips complex. Of course in this case both complexes have the same parameter $\delta$. It's important to note that the Vietoris-Rips complex, similar to Cech complex, also has problems with high dimensional simplexes.
+The Vietoris-Rips complex can be seen as a Čech complex in which the added complexes have all the faces included in Čech complex. It follows that the Čech complex is a subset of Vietoris-Rips complex. Of course if this is the case, both complexes must have the same parameter $\delta$. It's important to note that the Vietoris-Rips complex, similar to Čech complex, also has problems with high dimensional simplexes.
 
 \subsection{Persistence}
 
-Homology groups are one of the main concepts of algebraic topology. The topology is represented by the \emph{Betti numbers}, which represent the rank of the homology groups. Homology of degree 0 represents a connectedness of data (how many connected components are there), homology of degree 1 detects holes and tunnels, homology of degree 2 detects voids etc... In this assignment we limited our research to the first three important groups.
+Homology groups are one of the main concepts of algebraic topology. The topology is represented by the \emph{Betti numbers}, which represent the rank of the homology groups. Homology of degree 0 represents a connectedness of data (how many connected components are there), homology of degree 1 detects holes and tunnels, homology of degree 2 detects voids etc. In this assignment we limited our research to the first three important groups.
 
 The connectedness of discrete points is represented with complexes. It depends on certain parameters like radius around the points, which tells us which points are interconnected. The connectedness therefore can't be defined universally.
 
@@ -60,13 +60,13 @@ Another way of using the persistence diagram is to plot the \emph{birth} and \em
 
 \section{Approach}
 
-The data on which the rubustness of persistence diagrams was to be demonstrated was the set of points \emph{S}. Then the largest distance \emph{R} between any two points in the data set \emph{S} was found and was divided into parts of increasing size: $0 = r_0 < r_1 < r_2 < ... < r_n = R$. For every \emph{r} the Vietoris-Rips complexes $V_i = V_ri(S), i = 0,...,n$ were constructed. This represented a \emph{filtration} $V_0 \leq V_1 \leq ... \leq V_n$. For each \emph{$V_i$} the persistence diagrams of the filtration in dimensions 0, 1 and 2 were created. The whole process was repeated many times on shaken up data set, which was obtained by adding a small error term $\epsilon < R/100$ to the coordinates of each point in S.
+The data on which the robustness of persistence diagrams was to be demonstrated was the set of points \emph{S}. Then the largest distance \emph{R} between any two points in the data set \emph{S} was found and was divided into parts of increasing size: $0 = r_0 < r_1 < r_2 < ... < r_n = R$. For every \emph{r} the Vietoris-Rips complexes $V_i = V_ri(S), i = 0,...,n$ were constructed. This represented a \emph{filtration} $V_0 \leq V_1 \leq ... \leq V_n$. Next the persistence diagram of the filtration in dimensions 0, 1 and 2 were computed. Finally the whole process was repeated many times on shaken up datasets, which were obtained by adding a small error term $\epsilon < R/100$ to the coordinates of each point in S.
 
-We compared all the obtained persistence diagrams, which were also plotted in a single diagram, showing all the shaken up versions (and the original) of the same feature connected by a line. The diagrams were compared using bottleneck distance which compares a persistence diagram of a shaken up version of the dataset to the original version. The bottleneck distance measures how much we have to move the points in the shaken up persistence diagram to match the points from the original one.
+We compared the persistence diagrams of the original and shaken datasets by plotting them on a single persistence diagram and attempted to connect disticnt features with a line. This way we could see how some feature moved around when we shook the dataset. The diagrams were also compared using bottleneck distance to numerically determine how similar the the persistence diagrams for the shaken datasets were to the original. The bottleneck distance measures how much we have to move the points in the shaken up persistence diagram to match the points from the original one. We also plotted the barcode diagrams for the obtained persistence diagrams.
 
-% !!!!!!!!!!!!!!!! a kle je complex al kva ne lih point...  feature?
+This approach was performed on three datasets two large ones with 10000 points and a smaller one with 1000 points. Unfortunately due to the computational intensity required we only managed to calculate the bottleneck distance for the smaller dataset. With the other two we had to filter out so many points, to be able to compute the distance in a reasonable amount of time, that the results would have been largly meaningless. 
 
-C++, Qt framework and the topological computation library Dyonisus were used to compute Vietoris-Rips complexes, while the diagrams were generated using Python.
+C++, Qt framework\cite{qt} and the topological computation library Dyonisus\cite{dionysus} were used to compute Vietoris-Rips complexes, while the diagrams were generated using Python\cite{python}.
 
 \section{Problems}
 
@@ -83,7 +83,7 @@ We had some smaller problems, which were mostly solved by some compromises:
 \section{Results}
 
 % to bom se prevedu i guess
-Z večanjem $\delta$ seveda narašča čas računanja. Alpha oblike delujejo hitreje kot vietoris-rips. Zelo zanimivo (in pravilno) je delovanje izračuna homologije, saj npr. pri krogli, v primeru, da ima ta 3 luknje, izračuna homologijo kot (1,2,0), torej 1 povezana komponenta in 2 tunela. V primeru, da imamo 4 luknje dobimo homologijo (1,3,0), torej 3 tuneli oz. če sploščimo dobljeno formacijo okol ene od lukenj dobimo 3 luknje (glej Sliko~\ref{lukne}).
+Z večanjem $\delta$ seveda narašča čas računanja. Alpha oblike delujejo hitreje kot vietoris-rips. Zelo zanimivo (in pravilno) je delovanje izračuna homologije, saj npr. pri krogli, v primeru, da ima ta 3 luknje, izračuna homologijo kot (1,2,0), torej 1 povezana komponenta in 2 tunela. V primeru, da imamo 4 luknje dobimo homologijo (1,3,0), torej 3 tuneli oz. če sploščimo dobljeno formacijo okol ene od lukenj dobimo 3 luknje (glej Sliko ref lukne).
 
 %\begin{figure}[htb]
 %    \centering
@@ -94,22 +94,35 @@ Z večanjem $\delta$ seveda narašča čas računanja. Alpha oblike delujejo hit
 
 $\delta$ parameter je tesno povezan s tipom podatkov. Pri gostejših oblakih bo zadostila manjša $\delta$. Podobno so lahko razdalje v setu točk zelo velike (čeprav je oblak zelo velik oz. gost), zato bo potrebna večja $\delta$. Iz slik v nadaljevanju je vidno delovanje programa. Program je prilo"zen v zip datoteki.
 
+The bottleneck distances were only calculated for the smaller dataset. The max distance for it was 7.5, hence the points in the shaken datasets were moved at most for $\epsilon = 0.075$. The results are shown in Table~\ref{tab:bottle_dist}. 
 
+\begin{table}[H]
+	\begin{tabular}{llllllllll}
+		& O & S1 & S2 & S3 & S4 & S5 & S6 & S7 & S8 \\
+		\hline
+		O & 0.000 & 0.122 & 0.117 & 0.129 & 0.178 & 0.089 & 0.100 & 0.170 & 0.129 \\
+		\\
+		\\
+		& S9 & S10 & S11 & S12 & S13 & S14 & S15 & S16 & avg \\
+		\hline
+		O& 0.122 & 0.130 & 0.113 & 0.107 & 0.128 & 0.125 & 0.120 & 0.434 & 0.154\\
+	\end{tabular}
+	\caption{Bottleneck distances between the persistence diagrams of the original \emph{O} and shaken \emph{S} datasets}
+	\label{tab:bottle_dist}
+\end{table}
 
 %\newpage % mogoce nav treba
 
 \section{Work distribution}
 
-% pac dodejte kej al sprementa al kokr se vama pac zdi fer... 
-
 \subsection{Ožbolt}
-Reading and formating of data, point shakeup, bottleneck distance, testing.
+Reading and formating of data, bottleneck distance, testing.
 
 \subsection{Anej}
 Vietoris-Rips, generation of diagrams.
 
 \subsection{Jurij}
-Project groundwork setup, ???, testing. % sry mal sm zaspan... pac dopis whatever, lohk da tut kej k sm pr ozboltu premakn k seb da bo pac vsak mel neki pa je mir...
+Project framework setup, dataset shaking, testing.
 
 \newpage
 
