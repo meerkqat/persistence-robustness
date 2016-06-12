@@ -1,15 +1,26 @@
 \documentclass[11pt]{article}
 
 \usepackage[utf8x]{inputenc}
-\usepackage[slovene]{babel}
+\usepackage[english]{babel}
 
 \usepackage{amssymb}
 \usepackage{amsmath} 
 \usepackage{url}
 
+\usepackage[toc,page]{appendix}
+
 \usepackage{float}
 
+\makeatletter
+\newcommand*{\centerfloat}{
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+
 \usepackage[pdftex]{graphicx} % za slike
+\selectlanguage{english}
 
 \title{\textbf{Robustness of persistence diagrams}}
 \author{O\v zbolt Menegatti\\
@@ -60,7 +71,7 @@ Another way of using the persistence diagram is to plot the \emph{birth} and \em
 
 \section{Approach}
 
-The data on which the robustness of persistence diagrams was to be demonstrated was the set of points \emph{S}. Then the largest distance \emph{R} between any two points in the data set \emph{S} was found and was divided into parts of increasing size: $0 = r_0 < r_1 < r_2 < ... < r_n = R$. For every \emph{r} the Vietoris-Rips complexes $V_i = V_ri(S), i = 0,...,n$ were constructed. This represented a \emph{filtration} $V_0 \leq V_1 \leq ... \leq V_n$. Next the persistence diagram of the filtration in dimensions 0, 1 and 2 were computed. Finally the whole process was repeated many times on shaken up datasets, which were obtained by adding a small error term $\epsilon < R/100$ to the coordinates of each point in S.
+The data on which the robustness of persistence diagrams was to be demonstrated was the set of points \emph{S}. Then the largest distance \emph{R} between any two points in the data set \emph{S} was found and was divided into parts of increasing size: $0 = r_0 < r_1 < r_2 < ... < r_n = R$. For every \emph{r} the Vietoris-Rips complexes $V_i = V_ri(S), i = 0,...,n$ were constructed\footnote{$V_0$ represents a point cloud and $V_n$ is a fully connected graph.}. This represented a \emph{filtration} $V_0 \leq V_1 \leq ... \leq V_n$. Next the persistence diagram of the filtration in dimensions 0, 1 and 2 were computed. Finally the whole process was repeated many times on shaken up datasets, which were obtained by adding a small error term $\epsilon < R/100$ to the coordinates of each point in S.
 
 We compared the persistence diagrams of the original and shaken datasets by plotting them on a single persistence diagram and attempted to connect disticnt features with a line. This way we could see how some feature moved around when we shook the dataset. The diagrams were also compared using bottleneck distance to numerically determine how similar the the persistence diagrams for the shaken datasets were to the original. The bottleneck distance measures how much we have to move the points in the shaken up persistence diagram to match the points from the original one. We also plotted the barcode diagrams for the obtained persistence diagrams.
 
@@ -68,33 +79,11 @@ This approach was performed on three datasets two large ones with 10000 points a
 
 C++, Qt framework\cite{qt} and the topological computation library Dyonisus\cite{dionysus} were used to compute Vietoris-Rips complexes, while the diagrams were generated using Python\cite{python}.
 
-\section{Problems}
-
-We had some smaller problems, which were mostly solved by some compromises:
-
-\begin{enumerate}
-\item the dataset was too large, so we couldn't use the largest distance between two points, or the generation of Vietoris-Rips complex would take too long; we used an arbitrarily chosen value;
-
-\item when computing the persistence diagram (une crte k skacejo na sliki)...
-
-\item ...
-\end{enumerate}
-
 \section{Results}
 
-% to bom se prevedu i guess
-Z večanjem $\delta$ seveda narašča čas računanja. Alpha oblike delujejo hitreje kot vietoris-rips. Zelo zanimivo (in pravilno) je delovanje izračuna homologije, saj npr. pri krogli, v primeru, da ima ta 3 luknje, izračuna homologijo kot (1,2,0), torej 1 povezana komponenta in 2 tunela. V primeru, da imamo 4 luknje dobimo homologijo (1,3,0), torej 3 tuneli oz. če sploščimo dobljeno formacijo okol ene od lukenj dobimo 3 luknje (glej Sliko ref lukne).
+The persistence and barcode diagrams of the obtained results of all three datasets are shown in Appendix~\ref{appdix}. Each diagram is a composite of the original and shaken datasets. For example Figure~\ref{data1_pers} is a composite of the persistence diagram of the original dataset and the persistence diagrams of all the shaken dataset 1. Individual generators are connected with lines, so we can see how they move as we shake the dataset. For the most part it seems they are indeed constrained in small groups as one would expect. Sometimes though points on the diagram appear to jump out of their local group. We believe this is due to simple error and we go more into detail about this in Section~\ref{probs}.
 
-%\begin{figure}[htb]
-%    \centering
-%    \includegraphics[width=1\textwidth]{lukne_primer.png}
-%    \caption{Primer homologije pri krogli s 4 luknjami.}
-%    \label{lukne}
-%\end{figure}
-
-$\delta$ parameter je tesno povezan s tipom podatkov. Pri gostejših oblakih bo zadostila manjša $\delta$. Podobno so lahko razdalje v setu točk zelo velike (čeprav je oblak zelo velik oz. gost), zato bo potrebna večja $\delta$. Iz slik v nadaljevanju je vidno delovanje programa. Program je prilo"zen v zip datoteki.
-
-The bottleneck distances were only calculated for the smaller dataset. The max distance for it was 7.5, hence the points in the shaken datasets were moved at most for $\epsilon = 0.075$. The results are shown in Table~\ref{tab:bottle_dist}. 
+The bottleneck distances were only calculated for the smaller dataset (dataset 2). The max distance for it was 7.5, hence the points in the shaken datasets were moved at most for $\epsilon = 0.075$. The results are shown in Table~\ref{tab:bottle_dist}. 
 
 \begin{table}[H]
 	\begin{tabular}{llllllllll}
@@ -111,7 +100,15 @@ The bottleneck distances were only calculated for the smaller dataset. The max d
 	\label{tab:bottle_dist}
 \end{table}
 
-%\newpage % mogoce nav treba
+\section{\label{probs}Problems}
+
+We had some smaller problems, which were mostly solved by some compromises:
+
+\begin{enumerate}
+\item the datasets were too large, so we couldn't use the largest distance between two points, or the generation of Vietoris-Rips complex would have taken too long, so we used an arbitrarily chosen value smaller than the largest distance. 
+
+\item when displaying the persistance diagrams some homology generators seem to jump out of their local group. This is probably best shown on the persistence diagram for dataset 2, where we have quite a few longer lines connecting ``individual'' generator groups. This is only a visual glitch since we don't know exactly which generators belong together after we shake the datasets and we make some assumptions based on which cycles the generators belong to. This does not impact the bottleneck distance results. 
+\end{enumerate}
 
 \section{Work distribution}
 
@@ -128,5 +125,53 @@ Project framework setup, dataset shaking, testing.
 
 \bibliographystyle{plain}
 \bibliography{report-bib}
+
+\newpage
+
+\appendix
+\appendixpage
+\section{\label{appdix}Persistence and barcode diagrams}
+For all the diagrams the red colour represents homology generators for dimension 0, the green are generators for dimension 1, and the blue represent dimension 2.
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data1_d18_pers.png}
+   \caption{Persistance diagram for original and shaken dataset 1}
+   \label{data1_pers}
+\end{figure}
+
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data1_d18_bar.png}
+   \caption{Barcode diagram for original and shaken dataset 1}
+   \label{data1_bar}
+\end{figure}
+
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data2_d7_5_pers.png}
+   \caption{Persistance diagram for original and shaken dataset 2}
+   \label{data2_pers}
+\end{figure}
+
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data2_d7_5_bar.png}
+   \caption{Barcode diagram for original and shaken dataset 2}
+   \label{data2_bar}
+\end{figure}
+
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data3_d2_6_pers.png}
+   \caption{Persistance diagram for original and shaken dataset 3}
+   \label{data3_pers}
+\end{figure}
+
+\begin{figure}[H]
+   \centerfloat
+   \includegraphics[width=1.2\textwidth]{data3_d2_6_bar.png}
+   \caption{Barcode diagram for original and shaken dataset 3}
+   \label{data3_bar}
+\end{figure}
 
 \end{document}
